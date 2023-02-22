@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = [1, 2, 3, 4, 5, 6, 7];
+    return view('welcome', compact('data'));
 });
 
 Auth::routes();

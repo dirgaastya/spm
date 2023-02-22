@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-
+@section('title', 'Home')
 @section('content')
     <section id="hero" class="hero d-flex align-items-center section-bg">
         <div class="container">

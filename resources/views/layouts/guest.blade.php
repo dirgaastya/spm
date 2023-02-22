@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Satuan Penjamin Mutu') }}</title>
+    <title>{{ config('app.name', 'Satuan Penjamin Mutu') }} - @yield('title')</title>
 
     <!-- Styles -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

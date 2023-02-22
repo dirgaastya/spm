@@ -568,3 +568,51 @@ section {
         font-size: small;
     }
 }
+
+/*--------------------------------------------------------------
+# Team Section
+--------------------------------------------------------------*/
+
+#team .card-team {
+    max-width: 320px;
+    border-radius: 1.5em;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+#team .card-team img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0.75em;
+}
+
+.article-header h3{
+    font-size: 32px;
+    color: #4f4f5a;
+    font-weight: 400;
+}
+
+#team h4{
+    font-size: 24px;
+    color: #4f4f5a;
+    font-weight: 400;
+}
+
+#team ol{
+    font-size: 18px;
+    color: #4f4f5a;
+    font-weight: 400;
+}
+
+@media (max-width: 640px) {
+    .article-header h3 {
+        font-size: 24px;
+    }
+    #team h4 {
+        font-size: 18px;
+    }
+
+    #team p{
+        font-size: 12px;
+    }
+}

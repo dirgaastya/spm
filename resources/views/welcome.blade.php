@@ -19,9 +19,9 @@
                         <img src="https://spm.itenas.ac.id/frontend/assets/img/spm/Laporan-Hasil-Audit-web.jpg"
                             class="card-doc-img" alt="...">
                         <div class="card-doc-body d-flex flex-column justify-content-center py-4 px-3 px-md-5">
-                            <h5 class="card-doc-title mb-3 fs-5 fs-md-4">Dokumen Manual</h5>
+                            <h5 class="card-doc-title mb-3 fs-5 fs-md-4">Dokumen {{ $item->nama }}</h5>
 
-                            <a href="#" class="btn-doc text-center">Lihat selengkapnya</a>
+                            <a href="{{ route('dokumen', $item->id) }}" class="btn-doc text-center">Lihat selengkapnya</a>
                         </div>
                     </div>
                 @endforeach

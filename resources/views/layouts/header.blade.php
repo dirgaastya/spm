@@ -21,14 +21,9 @@
                 <li class="dropdown"><a href="#"><span>Dokumen</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="#">Dokumen Standar</a></li>
-                        <li><a href="#">Dokumen Manual</a></li>
-                        <li><a href="#">Dokumen Formulir</a></li>
-                        <li><a href="#">Dokumen Kebijakan</a></li>
-                        <li><a href="#">Dokumen Pedoman</a></li>
-                        <li><a href="#">Dokumen Surat Keputusan</a></li>
-                        <li><a href="#">Dokumen Audit</a></li>
-                        <li><a href="#">Dokumen RTM</a></li>
+                        @foreach ($kategoris as $kategori)
+                            <li><a href="{{ route('dokumen', $kategori->id) }}">Dokumen {{ $kategori->nama }}</a></li>
+                        @endforeach
                     </ul>
                 </li>
             </ul>

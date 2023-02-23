@@ -616,3 +616,31 @@ section {
         font-size: 12px;
     }
 }
+
+#dokumen .btn-show {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: var(--color-secondary);
+    transition: 0.3s;
+}
+#dokumen .btn-show:hover {
+    background-color: var(--color-primary);
+}
+#dokumen .btn-show:focus {
+    border: 1px;
+    border-color: var(--color-secondary);
+}
+
+.pagination li>a {
+    color: var(--color-default);
+}
+.pagination li>a:hover {
+    color: var(--color-primary);
+}
+.pagination li>a:focus {
+    border-color: var(--color-primary)!important;
+}
+.pagination .active>.page-link{
+    background-color: var(--color-primary)!important;
+    border-color: var(--color-primary)!important;
+}

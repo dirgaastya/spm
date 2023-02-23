@@ -11,7 +11,7 @@
     </section>
     <section id="list-doc" class="list-doc ">
         <div class="container">
-            <h3 data-aos="fade-up" data-aos-delay="400" class="fw-bold mb-5 text-center text-lg-start">Daftar Dokumen</h3>
+            <h3 data-aos="fade-in" data-aos-delay="400" class="fw-bold mb-5 text-center text-lg-start">Daftar Dokumen</h3>
             <div class="row px-3 gap-lg-4 justify-content-center justify-content-lg-between ">
                 @foreach ($data as $item)
                     <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"

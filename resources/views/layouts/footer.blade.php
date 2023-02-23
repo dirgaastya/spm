@@ -22,16 +22,16 @@
                     Profil
                 </h6>
                 <p>
-                    <a href="#!" class="text-reset">Sejarah</a>
+                    <a href="{{ route('profile.sejarah') }}" class="text-reset">Sejarah</a>
                 </p>
                 <p>
-                    <a href="#!" class="text-reset">Visi Misi</a>
+                    <a href="{{ route('profile.visimisi') }}" class="text-reset">Visi Misi</a>
                 </p>
                 <p>
-                    <a href="#!" class="text-reset">Road Map</a>
+                    <a href="{{ route('profile.roadmap') }}" class="text-reset">Road Map</a>
                 </p>
                 <p>
-                    <a href="#!" class="text-reset">Tim</a>
+                    <a href="{{ route('profile.tim') }}" class="text-reset">Tim</a>
                 </p>
             </div>
             <!-- Grid column -->

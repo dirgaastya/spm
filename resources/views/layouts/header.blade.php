@@ -17,7 +17,7 @@
                         <li><a href={{ route('profile.tim') }}>Tim</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Layanan</a></li>
+                <li><a href="{{ route('layanan') }}">Layanan</a></li>
                 <li class="dropdown"><a href="#"><span>Dokumen</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>

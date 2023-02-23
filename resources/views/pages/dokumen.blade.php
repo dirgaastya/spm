@@ -28,7 +28,7 @@
                             <th scope="row">{{ $loop->index + 1 }}</th>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->kegiatan }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                             <td>{{ $item->unit }}</td>
                             <td>
                                 <a href="#" class="btn btn-show"><i class="bi bi-eye text-white"></i></a>
@@ -37,7 +37,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $data->links('vendor.pagination') }}
+            <div class="w-100 d-flex justify-content-end">
+                {{ $data->links('vendor.pagination') }}
+            </div>
 
         </div>
     </section>

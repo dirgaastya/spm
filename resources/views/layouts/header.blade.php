@@ -21,8 +21,8 @@
                 <li class="dropdown"><a href="#"><span>Dokumen</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        @foreach ($kategoris as $kategori)
-                            <li><a href="{{ route('dokumen', $kategori->id) }}">Dokumen {{ $kategori->nama }}</a></li>
+                        @foreach ($jenisDokumen as $jenis)
+                            <li><a href="{{ route('dokumen', $jenis->no) }}">Dokumen {{ $jenis->nama }}</a></li>
                         @endforeach
                     </ul>
                 </li>

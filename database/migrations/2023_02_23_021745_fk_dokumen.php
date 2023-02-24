@@ -14,8 +14,8 @@ class FkDokumen extends Migration
     public function up()
     {
         Schema::table('dokumens', function (Blueprint $table) {
-            $table->integer('id_kategori')->unsigned();
-            $table->foreign('id_kategori', 'fk_dokumen_id_kategori')->references('id')->on('kategoris')->onUpdate('CASCADE');
+            $table->string('no_jenis_dokumen', 8);
+            $table->foreign('no_jenis_dokumen', 'fk_dokumen_no_jenis_dokumen')->references('no')->on('jenis_dokumens')->onUpdate('CASCADE');
         });
     }
 
@@ -27,8 +27,8 @@ class FkDokumen extends Migration
     public function down()
     {
         Schema::table('dokumens', function (Blueprint $table) {
-            $table->dropForeign('fk_dokumen_id_kategori');
-            $table->dropColumn('id_kategori');
+            $table->dropForeign('fk_dokumen_no_jenis_dokumen');
+            $table->dropColumn('no_jenis_dokumen');
         });
     }
 }

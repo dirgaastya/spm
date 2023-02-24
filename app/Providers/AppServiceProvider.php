@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(
             'layouts.header',
             function ($view) {
-                $view->with('kategoris', \App\Kategori::all());
+                $view->with('jenisDokumen', \App\JenisDokumen::all());
             }
         );
     }

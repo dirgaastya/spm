@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dokumen extends Model
 {
-
+    protected $table = 'dokumens';
+    protected $primaryKey = 'no';
+    public $incrementing = false;
     protected $fillable = [
-        'nama', 'kegiatan', 'status', 'unit', 'id_kategori'
+        'no', 'nama', 'kegiatan', 'status', 'unit', 'no_jenis_dokumen'
     ];
 
-    public function kategori()
+
+    public function jenisDokumen()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+        return $this->belongsTo(JenisDokumen::class, 'no_jenis_dokumen');
     }
 }

@@ -14,7 +14,8 @@ class CreateDokumensTable extends Migration
     public function up()
     {
         Schema::create('dokumens', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('no', 8)->primary();
+            $table->string('nama_file');
             $table->string('nama');
             $table->string('kegiatan');
             $table->string('unit');

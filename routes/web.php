@@ -11,10 +11,10 @@
 |
 */
 
-use App\Kategori;
+use App\JenisDokumen;
 
 Route::get('/', function () {
-    $data = Kategori::all();
+    $data = JenisDokumen::all();
     return view('welcome', compact('data'));
 });
 
@@ -40,7 +40,7 @@ Route::get('/layanan', function () {
     return view('pages.layanan', compact('data'));
 })->name('layanan');
 
-Route::get('dokumen/{id}', 'KategoriController@index')->name('dokumen');
+Route::get('dokumen/{id}', 'JenisDokumenController@index')->name('dokumen');
 
 Auth::routes();
 

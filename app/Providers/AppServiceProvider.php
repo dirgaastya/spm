@@ -13,7 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer(
+            'layouts.header',
+            function ($view) {
+                $view->with('kategoris', \App\Kategori::all());
+            }
+        );
     }
 
     /**

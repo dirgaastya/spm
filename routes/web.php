@@ -11,8 +11,10 @@
 |
 */
 
+use App\Kategori;
+
 Route::get('/', function () {
-    $data = [1, 2, 3, 4, 5, 6, 7];
+    $data = Kategori::all();
     return view('welcome', compact('data'));
 });
 
@@ -32,6 +34,13 @@ Route::get('/tim', function () {
     $data = [1, 2, 3, 4, 5, 6, 7];
     return view('pages.profile.tim', compact('data'));
 })->name('profile.tim');
+
+Route::get('/layanan', function () {
+    $data = [1, 2, 3, 4, 5, 6, 7];
+    return view('pages.layanan', compact('data'));
+})->name('layanan');
+
+Route::get('dokumen/{id}', 'KategoriController@index')->name('dokumen');
 
 Auth::routes();
 

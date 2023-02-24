@@ -6,11 +6,16 @@ use App\Dokumen;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Kategori;
+use App\JenisDokumen;
 
 class JenisDokumenController extends Controller
 {
-    public function index($id, Request $request)
+    public function index()
+    {
+        $data = JenisDokumen::paginate(10);
+        return view('pages.admin.jenis-dokumen.index', compact('data'));
+    }
+    public function guestIndex($id, Request $request)
     {
         $data = Dokumen::where('no_jenis_dokumen', $id)
             ->with('jenisDokumen')

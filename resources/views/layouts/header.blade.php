@@ -30,7 +30,7 @@
         </nav><!-- .navbar -->
 
         <div class="d-flex">
-            <a class="btn-login" href="#">
+            <a class="btn-login" href="{{ url('/login') }}">
                 Masuk
                 <i class="bi bi-box-arrow-in-right ms-1"></i>
             </a>

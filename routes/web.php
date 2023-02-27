@@ -40,15 +40,17 @@ Route::get('/layanan', function () {
     return view('pages.layanan', compact('data'));
 })->name('layanan');
 
-Route::get('dokumen/{id}', 'JenisDokumenController@guesIndex')->name('dokumen');
+Route::get('dokumen/{id}', 'JenisDokumenController@guestIndex')->name('dokumen');
 
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dokumen'], function () {
         Route::get('/', 'DokumenController@index')->name('dokumen.index');
+        Route::get('/data', 'DokumenController@getDocument')->name('dokumen.data');
         Route::get('/add', 'DokumenController@create')->name('dokumen.create');
         Route::post('/', 'DokumenController@store')->name('dokumen.store');
         Route::get('/edit/{id}', 'DokumenController@edit')->name('dokumen.edit');
         Route::put('/{id}', 'DokumenController@edit')->name('dokumen.update');
+        Route::get('/{nama_file}', 'DokumenController@show')->name('dokumen.show');
         Route::delete('/{id}', 'DokumenController@destroy')->name('dokumen.destroy');
     });
     Route::group(['prefix' => 'jenis-dokumen'], function () {

@@ -18,4 +18,9 @@ class Dokumen extends Model
     {
         return $this->belongsTo(JenisDokumen::class, 'no_jenis_dokumen');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'nama_file';
+    }
 }

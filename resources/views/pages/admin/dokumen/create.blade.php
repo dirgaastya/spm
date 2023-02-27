@@ -15,7 +15,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">Form </h6>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" role="form" method="POST" action="{{ route('dokumen.store') }}">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST"
+                    action="{{ route('dokumen.store') }}">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>
@@ -34,6 +35,10 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <input class="form-control" type="file" accept="application/pdf" id="formFile" name="dokumen"
+                            required autofocus>
+                    </div>
+                    <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Jenis Dokumen</p>
                             <select type="text" class="form-control form-select" id="jenis" name="jenis"
@@ -42,7 +47,6 @@
                                 @foreach ($data as $item)
                                     <option value="{{ $item->no }}">{{ $item->nama }}</option>
                                 @endforeach
-
                             </select>
                         </div>
                     </div>
@@ -71,6 +75,7 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="form-group my-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

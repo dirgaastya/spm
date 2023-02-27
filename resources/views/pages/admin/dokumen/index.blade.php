@@ -22,44 +22,19 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered dokumen_datatable" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th>NO</th>
                                 <th>Nama Dokumen</th>
                                 <th>Jenis Dokumen</th>
                                 <th>Kegiatan</th>
-                                <th>Status</th>
                                 <th>Unit</th>
-                                <th>Aksi</th>
+                                <th>Status</th>
+                                <th width="100px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $item->no }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->jenisDokumen->nama }}</td>
-                                    <td>{{ $item->kegiatan }}</td>
-                                    <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
-                                    <td>{{ $item->unit }}</td>
-                                    <td>
-                                        <form action="POST">
-                                            {{ csrf_field() }}
-                                            <a class="btn btn-info" href="{{ route('dokumen.edit', $item->no) }}">
-                                                Show
-                                            </a>
-                                            <a class="btn btn-warning" href="{{ route('dokumen.edit', $item->no) }}">
-                                                Edit
-                                            </a>
-                                            <button class="btn btn-danger" type="submit">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-
 
                         </tbody>
                     </table>
@@ -68,3 +43,54 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('.dokumen_datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('dokumen.data') }}",
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'jenis_dokumen.nama',
+                        name: 'jenis dokumen',
+                        orderable: false,
+                    },
+                    {
+                        data: 'kegiatan',
+                        name: 'kegiatan'
+                    },
+                    {
+                        data: 'unit',
+                        name: 'unit'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false
+                    },
+
+                ],
+                columnDefs: [{
+                    "render": function(data, type, row) {
+                        return (data === 1) ? 'Aktif' : 'Tidak Aktif';
+                    },
+                    "targets": 5
+                }]
+            });
+        });
+    </script>
+@endpush

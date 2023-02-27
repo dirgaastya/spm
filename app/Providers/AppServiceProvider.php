@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'layouts.header',
+            'layouts.guest.header',
             function ($view) {
                 $view->with('jenisDokumen', \App\JenisDokumen::all());
             }

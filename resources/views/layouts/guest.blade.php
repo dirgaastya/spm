@@ -23,9 +23,9 @@
 </head>
 
 <body>
-    @include('layouts.header')
+    @include('layouts.guest.header')
     @yield('content')
-    @include('layouts.footer')
+    @include('layouts.guest.footer')
 
     <!-- Scripts -->
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Satuan Penjamin Mutu') }} - @yield('title')</title>
+    <title>{{ config('app.name', 'Satuan Penjamin Mutu') }} - Login </title>
 
     <!-- Styles -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
                         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email"
                                 value="{{ old('email') }}" required autofocus>
-                            <i class="fa fa-user"></i>
+                            <i class="bi bi-person-fill"></i>
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -40,7 +40,7 @@
                         <div class="form-group help {{ $errors->has('password') ? ' has-error' : '' }}">
                             <input type="password" class="form-control" id="password" placeholder="Password"
                                 name="password" required>
-                            <i class="fa fa-lock"></i>
+                            <i class="bi bi-key-fill"></i>
                             <a href="#" class="fa fa-question-circle"></a>
                             @if ($errors->has('password'))
                                 <span class="help-block">

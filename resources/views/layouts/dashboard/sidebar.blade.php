@@ -46,7 +46,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href={{ route('jenis-dokumen.index') }}>Daftar Jenis Dokumen</a>
+                <a class="collapse-item" href={{ route('jenis-dokumen.index') }}>List Jenis Dokumen</a>
                 <a class="collapse-item" href={{ route('jenis-dokumen.create') }}>Tambah Jenis Dokumen</a>
             </div>
         </div>

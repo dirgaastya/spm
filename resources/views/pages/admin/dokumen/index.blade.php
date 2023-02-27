@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'List Dokumen')
 @section('content')
     <div class="container-fluid">
 
@@ -9,7 +9,13 @@
             <a href="{{ route('dokumen.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Tambah
                 Dokumen</a>
         </div>
-
+        @if (Session::has('alert-success'))
+            <div class="alert alert-success">
+                {{ Session::get('alert-success') }} </div>
+        @elseif (Session::has('alert-danger'))
+            <div class="alert alert-danger">
+                {{ Session::get('alert-danger') }} </div>
+        @endif
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Dokumen</h6>
@@ -37,7 +43,20 @@
                                     <td>{{ $item->kegiatan }}</td>
                                     <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     <td>{{ $item->unit }}</td>
-                                    <td>a</td>
+                                    <td>
+                                        <form action="POST">
+                                            {{ csrf_field() }}
+                                            <a class="btn btn-info" href="{{ route('dokumen.edit', $item->no) }}">
+                                                Show
+                                            </a>
+                                            <a class="btn btn-warning" href="{{ route('dokumen.edit', $item->no) }}">
+                                                Edit
+                                            </a>
+                                            <button class="btn btn-danger" type="submit">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
 

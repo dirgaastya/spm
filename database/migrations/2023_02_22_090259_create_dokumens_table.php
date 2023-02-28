@@ -16,7 +16,7 @@ class CreateDokumensTable extends Migration
         Schema::create('dokumens', function (Blueprint $table) {
             $table->string('no', 8)->primary();
             $table->string('nama_file')->unique();
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->string('kegiatan');
             $table->string('unit');
             $table->boolean('status')->default(false);

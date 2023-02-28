@@ -10,17 +10,12 @@ class Dokumen extends Model
     protected $primaryKey = 'no';
     public $incrementing = false;
     protected $fillable = [
-        'no', 'nama', 'kegiatan', 'status', 'unit', 'no_jenis_dokumen'
+        'no', 'nama', 'nama_file', 'kegiatan', 'status', 'unit', 'no_jenis_dokumen'
     ];
 
 
     public function jenisDokumen()
     {
         return $this->belongsTo(JenisDokumen::class, 'no_jenis_dokumen');
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'nama_file';
     }
 }

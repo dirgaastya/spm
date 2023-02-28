@@ -49,7 +49,7 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
         Route::get('/add', 'DokumenController@create')->name('dokumen.create');
         Route::post('/', 'DokumenController@store')->name('dokumen.store');
         Route::get('/edit/{id}', 'DokumenController@edit')->name('dokumen.edit');
-        Route::put('/{id}', 'DokumenController@edit')->name('dokumen.update');
+        Route::put('/edit/{id}', 'DokumenController@update')->name('dokumen.update');
         Route::get('/{nama_file}', 'DokumenController@show')->name('dokumen.show');
         Route::delete('/{id}', 'DokumenController@destroy')->name('dokumen.destroy');
     });
@@ -58,7 +58,7 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
         Route::get('/tambah-jenis', 'JenisDokumenController@create')->name('jenis-dokumen.create');
         Route::post('/', 'JenisDokumenController@store')->name('jenis-dokumen.store');
         Route::get('/edit/{id}', 'JenisDokumenController@edit')->name('jenis-dokumen.edit');
-        Route::put('/{id}', 'JenisDokumenController@edit')->name('jenis-dokumen.update');
+        Route::put('/edit/{id}', 'JenisDokumenController@update')->name('jenis-dokumen.update');
         Route::delete('/{id}', 'JenisDokumenController@destroy')->name('jenis-dokumen.destroy');
     });
 });

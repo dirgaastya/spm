@@ -52,6 +52,33 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-universal-access"></i>
+            <span>Kegiatan</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href={{ route('kegiatan.index') }}>List Kegiatan</a>
+                <a class="collapse-item" href={{ route('kegiatan.create') }}>Tambah Kegiatan</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapesUnit"
+            aria-expanded="true" aria-controls="collapesUnit">
+            <i class="fas fa-fw fa-sitemap"></i>
+            <span>Unit</span>
+        </a>
+        <div id="collapesUnit" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href={{ route('unit.index') }}>List Unit</a>
+                <a class="collapse-item" href={{ route('unit.create') }}>Tambah Unit</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

@@ -32,8 +32,12 @@
                         <div class="form-group">
                             <p class="heading mb-1">Jenis Dokumen</p>
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama Jenis Dokumen" value="{{ old('nama') }}">
+                                placeholder="Jenis Dokumen" value="{{ old('nama') }}">
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="heading mb-1">Thumbnail </p>
+                        <input class="form-control" type="file" accept="image/*" id="formFile" name="thumbnail">
                     </div>
                     <div class="form-group my-3">
                         <button type="submit" class="btn btn-primary">Submit</button>

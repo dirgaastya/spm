@@ -35,6 +35,10 @@
                                 placeholder="Nama Jenis Dokumen" value="{{ $data->nama }}">
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <p class="heading mb-1">Thumbnail </p>
+                        <input class="form-control" type="file" accept="image/*" id="formFile" name="thumbnail">
+                    </div>
                     <div class="form-group my-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

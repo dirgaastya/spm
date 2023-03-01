@@ -6,9 +6,11 @@ use App\Dokumen;
 use App\JenisDokumen;
 
 use App\Http\Requests;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class JenisDokumenController extends Controller
@@ -23,6 +25,8 @@ class JenisDokumenController extends Controller
         return Datatables::of(
             JenisDokumen::all()
         )
+
+            ->addColumn('thumbnail', 'pages.admin.jenis-dokumen.thumbnail')
             ->addColumn('aksi', 'pages.admin.jenis-dokumen.action')
             ->make(true);
     }
@@ -36,6 +40,7 @@ class JenisDokumenController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'thumbnail' => 'required'
         ]);
 
         $data = null;
@@ -43,9 +48,18 @@ class JenisDokumenController extends Controller
         try {
             DB::transaction(function () use ($request, &$data) {
                 $no = IdGenerator::generate(['table' => 'jenis_dokumens', 'field' => 'no', 'length' => 8, 'prefix' => 'JD-']);
+                if ($request->hasFile('thumbnail')) {
+                    $extension =  $request->file('thumbnail')->getClientOriginalExtension();
+                    $getFileName = Str::slug($request->nama) . '.' . $extension;
+                    $storePath = $request->file('thumbnail')->storeAs('public/thumbnails/', $getFileName);
+                } else {
+                    $getFileName = 'unknown.jpg';
+                }
+
                 $data = new JenisDokumen();
                 $data->no = $no;
                 $data->nama = $request->nama;
+                $data->thumbnail = $getFileName;
                 $data->save();
             });
             return redirect()->route('jenis-dokumen.index')->with('alert-success', 'Data berhasil Disimpan.');
@@ -66,12 +80,23 @@ class JenisDokumenController extends Controller
             'nama' => 'required',
         ]);
 
-        $data = JenisDokumen::findOrFail($id);
-
         try {
-            DB::transaction(function () use ($request, &$data) {
-                $data->update($request->all());
-            });
+            $data = JenisDokumen::findOrFail($id);
+            if ($request->hasFile('thumbnail')) {
+                if (!empty($data->thumbnail)) {
+                    unlink('storage/thumbnails/' . $data->thumbnail);
+                }
+                $extension =  $request->file('thumbnail')->getClientOriginalExtension();
+                $getFileName = Str::slug($request->nama) . '.' . $extension;
+                $storePath = $request->file('thumbnail')->storeAs('public/thumbnails/', $getFileName);
+            } else {
+                $extension =  $request->file('thumbnail')->getClientOriginalExtension();
+                $getFileName = Str::slug($request->nama) . '.' . $extension;
+                Storage::disk('public')->move('thumbnails\\' . $data->nama_file, 'thumbnails\\' . $getFileName);
+            }
+            $data->update(['thumbnail' => $getFileName]);
+            $data->update($request->all());
+
             return redirect()->route('jenis-dokumen.index')->with('alert-success', 'Data berhasil Diperbarui.');
         } catch (\Exception $e) {
             return redirect()->route('jenis-dokumen.index')->with('alert-danger', $e->getMessage());
@@ -80,7 +105,9 @@ class JenisDokumenController extends Controller
 
     public function destroy($id)
     {
-        JenisDokumen::destroy($id);
+        $data = JenisDokumen::findOrFail($id);
+        unlink('storage/thumbnails/' . $data->thumbnail);
+        $data->destroy($id);
         return redirect()->route('jenis-dokumen.index')->with('alert-danger', 'Data berhasil Dihapus.');
     }
 

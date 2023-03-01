@@ -16,8 +16,8 @@
                 @foreach ($data as $item)
                     <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
                         class="col-12 col-lg-4 card-doc mb-3 shadow p-3 d-flex" style="width: 540px;">
-                        <img src="https://spm.itenas.ac.id/frontend/assets/img/spm/Laporan-Hasil-Audit-web.jpg"
-                            class="card-doc-img" alt="...">
+                        <img id="thumbnail" src="{{ asset('storage/thumbnails/' . $item->thumbnail) }}" class="card-doc-img"
+                            alt="{{ $item->nama }}">
                         <div class="card-doc-body d-flex flex-column justify-content-center py-4 px-3 px-md-5">
                             <h5 class="card-doc-title mb-3 fs-5 fs-md-4">Dokumen {{ $item->nama }}</h5>
 

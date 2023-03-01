@@ -28,6 +28,7 @@
                             <tr>
                                 <th>NO</th>
                                 <th>Nama Jenis Dokumen</th>
+                                <th>Thumbnail</th>
                                 <th width="100px">Aksi</th>
                             </tr>
                         </thead>
@@ -55,6 +56,10 @@
                     {
                         data: 'nama',
                         name: 'nama'
+                    },
+                    {
+                        data: 'thumbnail',
+                        name: 'thumbnail'
                     },
                     {
                         data: 'aksi',

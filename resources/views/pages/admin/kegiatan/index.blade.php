@@ -1,13 +1,14 @@
 @extends('layouts.app')
-@section('title', 'Dokumen')
+@section('title', 'Kegiatan')
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">List Dokumen</h1>
-            <a href="{{ route('dokumen.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Tambah
-                Dokumen</a>
+            <h1 class="h3 mb-0 text-gray-800">List Kegiatan</h1>
+            <a href="{{ route('kegiatan.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                Tambah
+                Kegiatan</a>
         </div>
         @if (Session::has('alert-success'))
             <div class="alert alert-success">
@@ -18,7 +19,7 @@
         @endif
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Dokumen</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Kegiatan</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,11 +27,7 @@
                         <thead>
                             <tr>
                                 <th>NO</th>
-                                <th>Nama Dokumen</th>
-                                <th>Jenis Dokumen</th>
-                                <th>Kegiatan</th>
-                                <th>Unit</th>
-                                <th>Status</th>
+                                <th>Nama Kegiatan</th>
                                 <th width="100px">Aksi</th>
                             </tr>
                         </thead>
@@ -50,7 +47,7 @@
             var table = $('.dokumen_datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('dokumen.data') }}",
+                ajax: "{{ route('kegiatan.data') }}",
                 columns: [{
                         data: 'no',
                         name: 'no'
@@ -60,36 +57,12 @@
                         name: 'nama'
                     },
                     {
-                        data: 'jenis_dokumen.nama',
-                        name: 'jenis dokumen',
-                        orderable: false,
-                    },
-                    {
-                        data: 'kegiatan.nama',
-                        name: 'kegiatan'
-                    },
-                    {
-                        data: 'unit.nama',
-                        name: 'unit'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
                         data: 'aksi',
                         name: 'aksi',
                         orderable: false,
                         searchable: false
                     },
-
                 ],
-                columnDefs: [{
-                    "render": function(data, type, row) {
-                        return (data === 1) ? 'Aktif' : 'Tidak Aktif';
-                    },
-                    "targets": 5
-                }]
             });
         });
     </script>

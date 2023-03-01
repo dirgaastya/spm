@@ -43,11 +43,9 @@
                             <p class="heading mb-1">Jenis Dokumen</p>
                             <select type="text" class="form-control form-select" id="jenis" name="jenis"
                                 value="{{ $data->no_jenis_dokumen }}">
-                                <option selected disabled>Pilih jenis dokumen</option>
-                                @foreach ($jenis_dokumen as $item)
-                                    <option value="{{ $item->no }}"
-                                        {{ $item->no === $data->no_jenis_dokumen ? 'selected' : '' }}>{{ $item->nama }}
-                                    </option>
+                                <option selected disabled>Pilih Jenis Dokumen</option>
+                                @foreach ($jenis as $item)
+                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -55,15 +53,25 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Kegiatan</p>
-                            <input type="text" class="form-control" id="kegiatan" name="kegiatan"
-                                placeholder="Nama Kegiatan" value="{{ $data->kegiatan }}">
+                            <select type="text" class="form-control form-select" id="kegiatan" name="kegiatan"
+                                value="{{ $data->no_kegiatan }}">
+                                <option selected disabled>Pilih Kegiatan</option>
+                                @foreach ($kegiatan as $item)
+                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Unit</p>
-                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Nama Unit"
-                                value="{{ $data->unit }}">
+                            <select type="text" class="form-control form-select" id="unit" name="unit"
+                                value="{{ $data->no_unit }}">
+                                <option selected disabled>Pilih Unit</option>
+                                @foreach ($unit as $item)
+                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3">

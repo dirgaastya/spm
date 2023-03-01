@@ -43,8 +43,8 @@
                             <p class="heading mb-1">Jenis Dokumen</p>
                             <select type="text" class="form-control form-select" id="jenis" name="jenis"
                                 value="{{ old('jenis') }}">
-                                <option selected disabled>Pilih jenis dokumen</option>
-                                @foreach ($data as $item)
+                                <option selected disabled>Pilih Jenis Dokumen</option>
+                                @foreach ($jenis as $item)
                                     <option value="{{ $item->no }}">{{ $item->nama }}</option>
                                 @endforeach
                             </select>
@@ -53,15 +53,25 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Kegiatan</p>
-                            <input type="text" class="form-control" id="kegiatan" name="kegiatan"
-                                placeholder="Nama Kegiatan" value="{{ old('kegiatan') }}">
+                            <select type="text" class="form-control form-select" id="kegiatan" name="kegiatan"
+                                value="{{ old('kegiatan') }}">
+                                <option selected disabled>Pilih Kegiatan</option>
+                                @foreach ($kegiatan as $item)
+                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Unit</p>
-                            <input type="text" class="form-control" id="unit" name="unit" placeholder="Nama Unit"
+                            <select type="text" class="form-control form-select" id="unit" name="unit"
                                 value="{{ old('unit') }}">
+                                <option selected disabled>Pilih Unit</option>
+                                @foreach ($unit as $item)
+                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3">

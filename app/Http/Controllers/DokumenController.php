@@ -6,6 +6,8 @@ use App\Dokumen;
 use App\Helpers\Helper;
 use App\JenisDokumen;
 use App\Http\Requests;
+use App\Kegiatan;
+use App\Unit;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,7 @@ class DokumenController extends Controller
     public function getDocument()
     {
         return Datatables::of(
-            Dokumen::with('jenisDokumen')
+            Dokumen::with(['jenisDokumen', 'kegiatan', 'unit'])
         )
             ->addColumn('aksi', 'pages.admin.dokumen.action')
             ->make(true);
@@ -30,8 +32,10 @@ class DokumenController extends Controller
 
     public function create()
     {
-        $data = JenisDokumen::all();
-        return view('pages.admin.dokumen.create', compact('data'));
+        $jenis = JenisDokumen::all();
+        $unit = Unit::all();
+        $kegiatan = Kegiatan::all();
+        return view('pages.admin.dokumen.create', compact(['jenis', 'unit', 'kegiatan']));
     }
 
     public function store(Request $request)
@@ -64,8 +68,8 @@ class DokumenController extends Controller
                 $data->nama = $request->nama;
                 $data->nama_file = $getFileName;
                 $data->no_jenis_dokumen = $request->jenis;
-                $data->kegiatan = $request->kegiatan;
-                $data->unit = $request->unit;
+                $data->no_kegiatan = $request->kegiatan;
+                $data->no_unit = $request->unit;
                 $data->status = $request->status;
                 $data->save();
             });
@@ -77,9 +81,11 @@ class DokumenController extends Controller
 
     public function edit($id)
     {
-        $jenis_dokumen = JenisDokumen::all();
+        $jenis = JenisDokumen::all();
+        $unit = Unit::all();
+        $kegiatan = Kegiatan::all();
         $data = Dokumen::findOrFail($id);
-        return view('pages.admin.dokumen.edit', compact(['jenis_dokumen', 'data']));
+        return view('pages.admin.dokumen.edit', compact(['jenis', 'unit', 'kegiatan', 'data']));
     }
 
     public function update($id, Request $request)

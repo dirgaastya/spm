@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Dokumen;
 use App\Helpers\Helper;
-use Carbon\Carbon;
 use App\JenisDokumen;
 use App\Http\Requests;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class DokumenController extends Controller
@@ -23,7 +19,7 @@ class DokumenController extends Controller
         return view('pages.admin.dokumen.index');
     }
 
-    public function getDocument(Request $request)
+    public function getDocument()
     {
         return Datatables::of(
             Dokumen::with('jenisDokumen')
@@ -48,9 +44,6 @@ class DokumenController extends Controller
             'unit' => 'required',
             'status' => 'required',
         ]);
-
-
-
 
         $data = null;
 

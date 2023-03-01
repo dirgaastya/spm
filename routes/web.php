@@ -55,7 +55,8 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
     });
     Route::group(['prefix' => 'jenis-dokumen'], function () {
         Route::get('/', 'JenisDokumenController@index')->name('jenis-dokumen.index');
-        Route::get('/tambah-jenis', 'JenisDokumenController@create')->name('jenis-dokumen.create');
+        Route::get('/data', 'JenisDokumenController@getJenisDokumen')->name('jenis-dokumen.data');
+        Route::get('/add', 'JenisDokumenController@create')->name('jenis-dokumen.create');
         Route::post('/', 'JenisDokumenController@store')->name('jenis-dokumen.store');
         Route::get('/edit/{id}', 'JenisDokumenController@edit')->name('jenis-dokumen.edit');
         Route::put('/edit/{id}', 'JenisDokumenController@update')->name('jenis-dokumen.update');

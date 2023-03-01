@@ -21,16 +21,18 @@ class DatabaseSeeder extends Seeder
                 'nama' => $faker->word(),
             ]);
         }
-        foreach (range(1, 200) as $index) {
-            $id = IdGenerator::generate(['table' => 'dokumens', 'field' => 'no', 'length' => 8, 'prefix' => 'DOK-']);
-            DB::table('dokumens')->insert([
+        foreach (range(1, 7) as $index) {
+            $id = IdGenerator::generate(['table' => 'kegiatans', 'field' => 'no', 'length' => 8, 'prefix' => 'JD-']);
+            DB::table('kegiatans')->insert([
                 'no' => $id,
-                'nama' => $faker->sentence(4),
-                'nama_file' => $faker->sentence(4),
-                'kegiatan' => $faker->sentence(2),
-                'unit' => $faker->word(),
-                'status' => true,
-                'no_jenis_dokumen' => 'JD-00001',
+                'nama' => $faker->word(),
+            ]);
+        }
+        foreach (range(1, 7) as $index) {
+            $id = IdGenerator::generate(['table' => 'units', 'field' => 'no', 'length' => 8, 'prefix' => 'JD-']);
+            DB::table('units')->insert([
+                'no' => $id,
+                'nama' => $faker->word(),
             ]);
         }
     }

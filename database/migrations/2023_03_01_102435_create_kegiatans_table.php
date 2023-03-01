@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDokumensTable extends Migration
+class CreateKegiatansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDokumensTable extends Migration
      */
     public function up()
     {
-        Schema::create('dokumens', function (Blueprint $table) {
+        Schema::create('kegiatans', function (Blueprint $table) {
             $table->string('no', 8)->primary();
-            $table->string('nama_file')->unique();
-            $table->string('nama')->unique();
-            $table->boolean('status')->default(false);
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateDokumensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dokumens');
+        Schema::dropIfExists('kegiatans');
     }
 }

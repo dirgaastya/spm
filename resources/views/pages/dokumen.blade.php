@@ -4,7 +4,7 @@
     <section id="hero" class="hero d-flex align-items-center section-bg">
         <div class="container">
             <div class="text-center">
-                <h2 data-aos="fade-up">Dokumen {{ $data[0]->kategori->nama }}</h2>
+                <h2 data-aos="fade-up">Dokumen {{ $jenis->nama }}</h2>
                 <p data-aos="fade-up" data-aos-delay="100">SPM</p>
             </div>
         </div>
@@ -27,11 +27,12 @@
                         <tr>
                             <th scope="row">{{ $loop->index + 1 }}</th>
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->kegiatan }}</td>
+                            <td>{{ $item->kegiatan->nama }}</td>
+                            <td>{{ $item->unit->nama }}</td>
                             <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
-                            <td>{{ $item->unit }}</td>
                             <td>
-                                <a href="#" class="btn btn-show"><i class="bi bi-eye text-white"></i></a>
+                                <a href="{{ route('dokumen.guest.show', $item->nama_file) }}" class="btn btn-show"><i
+                                        class="bi bi-eye text-white"></i></a>
                             </td>
                         </tr>
                     @endforeach

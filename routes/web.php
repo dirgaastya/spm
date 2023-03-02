@@ -40,7 +40,9 @@ Route::get('/layanan', function () {
     return view('pages.layanan', compact('data'));
 })->name('layanan');
 
-Route::get('dokumen/{id}', 'JenisDokumenController@guestIndex')->name('dokumen');
+Route::get('dokumen/{slug}', 'GuestController@dokumenIndex')->name('dokumen');
+Route::get('dokumen/show/{slug}', 'GuestController@show')->name('dokumen.guest.show');
+Route::get('dokumen/api/data/', 'GuestController@getDokumen')->name('dokumen.get-data');
 
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dokumen'], function () {

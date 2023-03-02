@@ -15,7 +15,7 @@ class CreateJenisDokumensTable extends Migration
     {
         Schema::create('jenis_dokumens', function (Blueprint $table) {
             $table->string('no', 8)->primary();
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->string('thumbnail')->nullable();
             $table->timestamps();
         });

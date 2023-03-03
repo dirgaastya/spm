@@ -39,11 +39,15 @@ Route::get('/layanan', function () {
     $data = [1, 2, 3, 4, 5, 6, 7];
     return view('pages.layanan', compact('data'));
 })->name('layanan');
+// Dokumen Guest Route
+Route::group(['prefix' => 'dokumen'], function () {
+    Route::get('/', 'GuestController@dokumenIndex')->name('guest.dokumen.index');
+    Route::get('/{slug}', 'GuestController@dokumenDetail')->name('guest.dokumen.detail');
+    Route::get('/show/{nama_file}', 'GuestController@show')->name('guest.dokumen.show');
+    Route::get('/api/data/', 'GuestController@getDokumen')->name('guest.dokumen.get-data');
+});
 
-Route::get('dokumen/{slug}', 'GuestController@dokumenIndex')->name('dokumen');
-Route::get('dokumen/show/{slug}', 'GuestController@show')->name('dokumen.guest.show');
-Route::get('dokumen/api/data/', 'GuestController@getDokumen')->name('dokumen.get-data');
-
+// Admin route
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'dokumen'], function () {
         Route::get('/', 'DokumenController@index')->name('dokumen.index');

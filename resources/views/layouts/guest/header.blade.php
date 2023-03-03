@@ -22,7 +22,8 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         @foreach ($jenisDokumen as $jenis)
-                            <li><a href="{{ route('dokumen', $jenis->nama) }}">Dokumen {{ $jenis->nama }}</a></li>
+                            <li><a href="{{ route('guest.dokumen.detail', $jenis->nama) }}">Dokumen
+                                    {{ $jenis->nama }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -30,10 +31,26 @@
         </nav><!-- .navbar -->
 
         <div class="d-flex">
-            <a class="btn-login" href="{{ url('/login') }}">
-                Masuk
-                <i class="bi bi-box-arrow-in-right ms-1"></i>
-            </a>
+
+            @if (Auth::check())
+                <a class="btn-login" href="{{ url('/home') }}">
+                    Dashboard
+                </a>
+                <a class="btn-login" href="{{ url('/logout') }}"
+                    onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                    {{ csrf_field() }}
+                </form>
+            @else
+                <a class="btn-login" href="{{ url('/login') }}">
+                    Masuk
+                    <i class="bi bi-box-arrow-in-right ms-1"></i>
+                </a>
+            @endif
+
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         </div>

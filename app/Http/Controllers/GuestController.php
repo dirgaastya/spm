@@ -9,11 +9,17 @@ use Yajra\Datatables\Datatables;
 
 class GuestController extends Controller
 {
-    public function dokumenIndex($slug)
+    public function dokumenIndex()
+    {
+        $data = JenisDokumen::all();
+        return view('pages.dokumen.index', compact(['data']));
+    }
+
+    public function dokumenDetail($slug)
     {
         $jenis = JenisDokumen::where('nama', $slug)->first();
         $data = Dokumen::where('no_jenis_dokumen', $jenis->no)->with('jenisDokumen', 'kegiatan', 'unit')->paginate(15);
-        return view('pages.dokumen', compact(['data', 'jenis']));
+        return view('pages.dokumen.show', compact(['data', 'jenis']));
     }
 
     public function show($nama_file)

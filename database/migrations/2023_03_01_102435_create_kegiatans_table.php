@@ -15,7 +15,7 @@ class CreateKegiatansTable extends Migration
     {
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->string('no', 8)->primary();
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->timestamps();
         });
     }

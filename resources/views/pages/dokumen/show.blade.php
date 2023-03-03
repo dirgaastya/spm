@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama Dokumen</th>
+                        <th scope="col">Nama Dokumen {{ $jenis->nama }}</th>
                         <th scope="col">Kegiatan</th>
                         <th scope="col">Status</th>
                         <th scope="col">Unit</th>
@@ -31,7 +31,7 @@
                             <td>{{ $item->unit->nama }}</td>
                             <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                             <td>
-                                <a href="{{ route('dokumen.guest.show', $item->nama_file) }}" class="btn btn-show"><i
+                                <a href="{{ route('guest.dokumen.show', $item->nama_file) }}" class="btn btn-show"><i
                                         class="bi bi-eye text-white"></i></a>
                             </td>
                         </tr>

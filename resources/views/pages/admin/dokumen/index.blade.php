@@ -63,14 +63,19 @@
                         data: 'jenis_dokumen.nama',
                         name: 'jenis dokumen',
                         orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'kegiatan.nama',
-                        name: 'kegiatan'
+                        name: 'kegiatan',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'unit.nama',
-                        name: 'unit'
+                        name: 'unit',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'status',

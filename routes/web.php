@@ -44,7 +44,7 @@ Route::group(['prefix' => 'dokumen'], function () {
     Route::get('/', 'GuestController@dokumenIndex')->name('guest.dokumen.index');
     Route::get('/{slug}', 'GuestController@dokumenDetail')->name('guest.dokumen.detail');
     Route::get('/show/{nama_file}', 'GuestController@show')->name('guest.dokumen.show');
-    Route::get('/api/data/', 'GuestController@getDokumen')->name('guest.dokumen.get-data');
+    Route::get('/api/data/{slug}', 'GuestController@getDokumen')->name('guest.dokumen.get-data');
 });
 
 // Admin route

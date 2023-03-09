@@ -41,11 +41,13 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Jenis Dokumen</p>
-                            <select type="text" class="form-control form-select" id="jenis" name="jenis"
+                            <select type="text" class="form-control form-select" id="jenis" name="no_jenis_dokumen"
                                 value="{{ $data->no_jenis_dokumen }}">
-                                <option selected disabled>Pilih Jenis Dokumen</option>
+                                <option disabled>Pilih Jenis Dokumen</option>
                                 @foreach ($jenis as $item)
-                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                    <option value="{{ $item->no }}"
+                                        {{ $data->no_jenis_dokumen === $item->no ? 'selected' : '' }}>{{ $item->nama }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -53,11 +55,13 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Kegiatan</p>
-                            <select type="text" class="form-control form-select" id="kegiatan" name="kegiatan"
+                            <select type="text" class="form-control form-select" id="kegiatan" name="no_kegiatan"
                                 value="{{ $data->no_kegiatan }}">
-                                <option selected disabled>Pilih Kegiatan</option>
+                                <option disabled>Pilih Kegiatan</option>
                                 @foreach ($kegiatan as $item)
-                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                    <option value="{{ $item->no }}"
+                                        {{ $data->no_kegiatan === $item->no ? 'selected' : '' }}>{{ $item->nama }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -65,11 +69,12 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <p class="heading mb-1">Unit</p>
-                            <select type="text" class="form-control form-select" id="unit" name="unit"
+                            <select type="text" class="form-control form-select" id="unit" name="no_unit"
                                 value="{{ $data->no_unit }}">
-                                <option selected disabled>Pilih Unit</option>
+                                <option disabled>Pilih Unit</option>
                                 @foreach ($unit as $item)
-                                    <option value="{{ $item->no }}">{{ $item->nama }}</option>
+                                    <option value="{{ $item->no }}"
+                                        {{ $data->no_unit === $item->no ? 'selected' : '' }}>{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                         </div>

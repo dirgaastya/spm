@@ -11,37 +11,94 @@
     </section>
     <section id="dokumen">
         <div class="container">
-            <table data-aos="fade-in" class="table table-hover">
+            <table data-aos="fade-in" class="table table-hover dokumen_datatable">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Dokumen {{ $jenis->nama }}</th>
-                        <th scope="col">Kegiatan</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">Aksi</th>
+                        <th>No</th>
+                        <th>Nama Dokumen {{ $jenis->nama }}</th>
+                        <th>Kegiatan</th>
+                        <th>Unit</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
-                        <tr>
-                            <th scope="row">{{ $loop->index + 1 }}</th>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->kegiatan->nama }}</td>
-                            <td>{{ $item->unit->nama }}</td>
-                            <td>{{ $item->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
-                            <td>
-                                <a href="{{ route('guest.dokumen.show', $item->nama_file) }}" class="btn btn-show"><i
-                                        class="bi bi-eye text-white"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
-            <div class="w-100 d-flex justify-content-end">
-                {{ $data->links('vendor.pagination') }}
-            </div>
 
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('.dokumen_datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('guest.dokumen.get-data', $slug) }}",
+                    type: "GET"
+                },
+                columns: [{
+                        data: 'no',
+                        name: 'no'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+
+                    {
+                        data: 'kegiatan.nama',
+                        name: 'kegiatan'
+                    },
+                    {
+                        data: 'unit.nama',
+                        name: 'unit'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false
+                    },
+
+
+                ],
+                columnDefs: [{
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0,
+                    },
+                    {
+                        "render": function(data, type, row) {
+                            return (data === 1) ? 'Aktif' : 'Tidak Aktif';
+                        },
+                        "targets": 4
+                    }
+
+                ],
+                order: [
+                    [1, 'asc']
+                ]
+            });
+
+            table.on('order.dt search.dt', function() {
+                let i = 1;
+
+                table.cells(null, 0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).every(function(cell) {
+                    this.data(i++);
+                });
+            }).draw();
+        });
+    </script>
+@endpush

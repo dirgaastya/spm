@@ -15,11 +15,10 @@ class GuestController extends Controller
         return view('pages.dokumen.index', compact(['data']));
     }
 
-    public function dokumenDetail($slug)
+    public function dokumenDetail(Request $request, $slug)
     {
         $jenis = JenisDokumen::where('nama', $slug)->first();
-        $data = Dokumen::where('no_jenis_dokumen', $jenis->no)->with('jenisDokumen', 'kegiatan', 'unit')->paginate(15);
-        return view('pages.dokumen.show', compact(['data', 'jenis']));
+        return view('pages.dokumen.show', compact(['jenis', 'slug']));
     }
 
     public function show($nama_file)
@@ -28,12 +27,14 @@ class GuestController extends Controller
         return response()->file('storage/' . $getFolderPath . '/' . $nama_file);
     }
 
-    public function getDokumen()
+    public function getDokumen($slug)
     {
+        $jenisDokumen = JenisDokumen::where('nama', $slug)->first();
+        $query = Dokumen::where('no_jenis_dokumen', $jenisDokumen->no)->with(['jenisDokumen', 'kegiatan', 'unit'])->get();
         return Datatables::of(
-            Dokumen::with('jenisDokumen', 'kegiatan', 'unit')
+            $query
         )
-            ->addColumn('aksi', 'pages.admin.dokumen.action')
+            ->addColumn('aksi', 'pages.dokumen.action')
             ->make(true);
     }
 }

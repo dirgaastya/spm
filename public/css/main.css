@@ -618,13 +618,13 @@ section {
 }
 
 #dokumen .btn-show {
-    padding: 8px;
-    border-radius: 8px;
-    background-color: var(--color-secondary);
+    padding: 4px 8px;
+    border-radius: 12px;
+    background-color: var(--color-primary);
     transition: 0.3s;
 }
 #dokumen .btn-show:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
 }
 #dokumen .btn-show:focus {
     border: 1px;

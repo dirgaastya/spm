@@ -55,7 +55,7 @@ class DokumenController extends Controller
             DB::transaction(function () use ($request, &$data) {
                 $no = IdGenerator::generate(['table' => 'dokumens', 'field' => 'no', 'length' => 8, 'prefix' => 'DOK-']);
                 if ($request->hasFile('dokumen')) {
-                    $prefixDate = Helper::getPrefixDate();
+                    $prefixDate = Helper::getPrefixDateNow();
                     $getFileName = Helper::getFileNamePdf($request);
                     $path = $request->file('dokumen')->storeAs('public/' . $prefixDate, $getFileName);
                 } else {
@@ -92,27 +92,28 @@ class DokumenController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'jenis' => 'required',
-            'kegiatan' => 'required',
-            'unit' => 'required',
+            'no_jenis_dokumen' => 'required',
+            'no_kegiatan' => 'required',
+            'no_unit' => 'required',
             'status' => 'required',
         ]);
 
         try {
             $data = Dokumen::findOrFail($id);
             if ($request->hasFile('dokumen')) {
-                $prefixDate = Helper::getPrefixDate();
+                $prefixDate = Helper::getPrefixDate($data->nama_file);
                 $getFileName = Helper::getFileNamePdf($request);
                 if (!empty($data->nama_file)) {
-                    $getFolderPath = substr($data->nama_file, 0, 5);
-                    unlink('storage/' . $getFolderPath . '/' . $data->nama_file);
+                    unlink('storage/' . $prefixDate . '/' . $data->nama_file);
                     $path = $request->file('dokumen')->storeAs('public/' . $prefixDate, $getFileName);
                 }
             } else {
                 $getFileName = Helper::getFileNamePdf($request);
-                $getFolderPath = substr($data->nama_file, 0, 5);
-                $filePath = $getFolderPath . '\\';
-                Storage::disk('public')->move($filePath . $data->nama_file, $filePath . $getFileName);
+                $prefixDate =  Helper::getPrefixDate($data->nama_file);
+                $filePath = $prefixDate . '\\';
+                if ($getFileName !== $data->nama_file) {
+                    Storage::disk('public')->move($filePath . $data->nama_file, $filePath . $getFileName);
+                }
             }
             $data->update(['nama_file' => $getFileName]);
             $data->update($request->all());
@@ -124,15 +125,15 @@ class DokumenController extends Controller
 
     public function show($nama_file)
     {
-        $getFolderPath = substr($nama_file, 0, 5);
-        return response()->file('storage/' . $getFolderPath . '/' . $nama_file);
+        $prefixDate = Helper::getPrefixDate($nama_file);
+        return response()->file('storage/' . $prefixDate . '/' . $nama_file);
     }
 
     public function destroy($id)
     {
         $data = Dokumen::findOrFail($id);
-        $getFolderPath = substr($data->nama_file, 0, 5);
-        unlink('storage/' . $getFolderPath . '/' . $data->nama_file);
+        $prefixDate = Helper::getPrefixDate($data->nama_file);
+        unlink('storage/' . $prefixDate . '/' . $data->nama_file);
         $data->destroy($id);
         return redirect()->route('dokumen.index')->with('alert-danger', 'Data berhasil Dihapus.');
     }

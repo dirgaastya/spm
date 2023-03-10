@@ -1,0 +1,5 @@
+#dataTable>tbody>tr>td ,
+#dataTable>thead>tr>th
+{
+    text-transform: capitalize;
+}

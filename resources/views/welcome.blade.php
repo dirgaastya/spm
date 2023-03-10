@@ -19,7 +19,7 @@
                         <img id="thumbnail" src="{{ asset('storage/thumbnails/' . $item->thumbnail) }}" class="card-doc-img"
                             alt="{{ $item->nama }}">
                         <div class="card-doc-body d-flex flex-column justify-content-center py-4 px-3 px-md-5">
-                            <h5 class="card-doc-title mb-3 fs-5 fs-md-4">Dokumen {{ $item->nama }}</h5>
+                            <h5 class="card-doc-title mb-3 fs-5 fs-md-4 text-capitalize">Dokumen {{ $item->nama }}</h5>
 
                             <a href="{{ route('guest.dokumen.detail', $item->nama) }}" class="btn-doc text-center">Lihat
                                 selengkapnya</a>

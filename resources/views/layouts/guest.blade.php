@@ -21,7 +21,7 @@
     <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <!-- Scripts -->
-
+    @stack('styles')
 </head>
 
 <body>

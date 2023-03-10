@@ -22,7 +22,8 @@
                             class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         @foreach ($jenisDokumen as $jenis)
-                            <li><a href="{{ route('guest.dokumen.detail', $jenis->nama) }}">Dokumen
+                            <li><a class="text-capitalize"
+                                    href="{{ route('guest.dokumen.detail', $jenis->nama) }}">Dokumen
                                     {{ $jenis->nama }}</a></li>
                         @endforeach
                     </ul>

@@ -34,7 +34,7 @@
                                 <th width="100px">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-capitalize">
 
                         </tbody>
                     </table>

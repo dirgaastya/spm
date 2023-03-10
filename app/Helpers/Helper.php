@@ -29,4 +29,10 @@ class Helper
         $prefix = substr($nama_file, 0, 5);
         return $prefix;
     }
+
+    public static function getThumbnailExtension($nama)
+    {
+        $length = strpos($nama, ".") - strlen($nama);
+        return substr($nama, $length);
+    }
 }

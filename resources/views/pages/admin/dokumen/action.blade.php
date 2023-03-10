@@ -1,9 +1,12 @@
 <form action="{{ route('dokumen.destroy', $no) }}" method="Post" class="d-flex" id="{{ 'delete-form-' . $no }}">
-    <a class="btn me-1 btn-primary" href="{{ route('dokumen.edit', $no) }}">Edit</a>
+    <a class="btn me-1 btn-info" href="{{ route('dokumen.show', $nama_file) }}"><i class="fas fa-fw fa-regular fa-eye"
+            style="font-size: 0.8em;"></i></a>
+    <a class="btn me-1 btn-warning" href="{{ route('dokumen.edit', $no) }}"><i class="fas fa-fw fa-regular fa-pen"
+            style="font-size: 0.8em;"></i></a>
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Delete{{ '-' . $no }}">
-        Hapus
+        <i class="fas fa-fw fa-regular fa-trash" style="font-size: 0.8em;"></i>
     </button>
 </form>
 

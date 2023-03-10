@@ -6,6 +6,7 @@ use App\Dokumen;
 use App\JenisDokumen;
 
 use App\Http\Requests;
+use App\Helpers\Helper;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -90,9 +91,10 @@ class JenisDokumenController extends Controller
                 $getFileName = Str::slug($request->nama) . '.' . $extension;
                 $storePath = $request->file('thumbnail')->storeAs('public/thumbnails/', $getFileName);
             } else {
-                $extension =  $request->file('thumbnail')->getClientOriginalExtension();
-                $getFileName = Str::slug($request->nama) . '.' . $extension;
-                Storage::disk('public')->move('thumbnails\\' . $data->nama_file, 'thumbnails\\' . $getFileName);
+                $getFileName = $request->nama . Helper::getThumbnailExtension($data->thumbnail);
+                if ($getFileName !== $data->thumbnail) {
+                    Storage::disk('public')->move('thumbnails\\' . $data->nama_file, 'thumbnails\\' . $getFileName);
+                }
             }
             $data->update(['thumbnail' => $getFileName]);
             $data->update($request->all());
@@ -109,13 +111,5 @@ class JenisDokumenController extends Controller
         unlink('storage/thumbnails/' . $data->thumbnail);
         $data->destroy($id);
         return redirect()->route('jenis-dokumen.index')->with('alert-danger', 'Data berhasil Dihapus.');
-    }
-
-    public function guestIndex($id, Request $request)
-    {
-        $data = Dokumen::where('no_jenis_dokumen', $id)
-            ->with('jenisDokumen')
-            ->paginate(15);
-        return view('pages.dokumen', compact('data'));
     }
 }

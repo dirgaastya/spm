@@ -17,9 +17,16 @@
             <div class="card-body">
                 <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST"
                     action="{{ route('dokumen.store') }}">
+                    @if (Session::has('alert-success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('alert-success') }} </div>
+                    @elseif (Session::has('alert-danger'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('alert-danger') }} </div>
+                    @endif
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            <ul>
+                            <ul style="list-style: none;">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach

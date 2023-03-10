@@ -73,9 +73,9 @@ class DokumenController extends Controller
                 $data->status = $request->status;
                 $data->save();
             });
-            return redirect()->route('dokumen.index')->with('alert-success', 'Data berhasil Disimpan.');
+            return redirect()->route('dokumen.create')->with('alert-success', 'Data berhasil Disimpan.');
         } catch (\Exception $e) {
-            return redirect()->route('dokumen.index')->with('alert-danger', $e->getMessage());
+            return redirect()->route('dokumen.create')->with('alert-danger', $e->getMessage());
         }
     }
 

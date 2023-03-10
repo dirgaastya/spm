@@ -41,7 +41,6 @@
             </div>
             @include('layouts.dashboard.footer')
             @include('layouts.dashboard.logout-modal')
-            @include('layouts.dashboard.delete-modal')
         </div>
     </div>
     <!-- Scripts -->

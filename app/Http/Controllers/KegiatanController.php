@@ -39,7 +39,7 @@ class KegiatanController extends Controller
 
         try {
             DB::transaction(function () use ($request, &$data) {
-                $no = IdGenerator::generate(['table' => 'jenis_dokumens', 'field' => 'no', 'length' => 8, 'prefix' => 'KG-']);
+                $no = IdGenerator::generate(['table' => 'kegiatans', 'field' => 'no', 'length' => 8, 'prefix' => 'KG-']);
                 $data = new Kegiatan();
                 $data->no = $no;
                 $data->nama = $request->nama;

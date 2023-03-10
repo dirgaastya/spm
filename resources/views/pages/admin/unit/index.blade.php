@@ -50,7 +50,9 @@
                 ajax: "{{ route('unit.data') }}",
                 columns: [{
                         data: 'no',
-                        name: 'no'
+                        name: 'no',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'nama',

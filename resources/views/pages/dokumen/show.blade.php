@@ -54,11 +54,11 @@
 
                     {
                         data: 'kegiatan.nama',
-                        name: 'kegiatan'
+                        name: 'nama kegiatan'
                     },
                     {
                         data: 'unit.nama',
-                        name: 'unit'
+                        name: 'nama unit'
                     },
                     {
                         data: 'status',

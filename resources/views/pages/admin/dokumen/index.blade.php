@@ -53,7 +53,9 @@
                 ajax: "{{ route('dokumen.data') }}",
                 columns: [{
                         data: 'no',
-                        name: 'no'
+                        name: 'no',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'nama',
@@ -62,20 +64,16 @@
                     {
                         data: 'jenis_dokumen.nama',
                         name: 'jenis dokumen',
-                        orderable: false,
-                        searchable: false
+
                     },
                     {
                         data: 'kegiatan.nama',
-                        name: 'kegiatan',
-                        orderable: false,
-                        searchable: false
+                        name: 'nama kegiatan',
+
                     },
                     {
                         data: 'unit.nama',
-                        name: 'unit',
-                        orderable: false,
-                        searchable: false
+                        name: 'nama unit',
                     },
                     {
                         data: 'status',

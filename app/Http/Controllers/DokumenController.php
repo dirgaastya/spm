@@ -24,7 +24,7 @@ class DokumenController extends Controller
     public function getDocument()
     {
         return Datatables::of(
-            Dokumen::with(['jenisDokumen', 'kegiatan', 'unit'])
+            Dokumen::with(['jenisDokumen', 'kegiatan', 'unit'])->get()
         )
             ->addColumn('aksi', 'pages.admin.dokumen.action')
             ->make(true);
